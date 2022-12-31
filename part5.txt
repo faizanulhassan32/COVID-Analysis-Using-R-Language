@@ -1,0 +1,24 @@
+data = c(18,18,18,18,18,18,19,19,19,19,19,19,19,19,19,19,19,19,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,21,21,21,21,21,21,21,21,21,21,22,22,22,22,22,22,23,23,23,24,24,24,25,25,25,26,26,27,27,28,28,29,29,30,31,31,32,32,37,37,38,38,40,41,41,43,43,44,44,45,45,45,47,47,47,47,52,52,53,53,55,60,62,63)
+maximum = max(data)
+minimum = min(data)
+range = maximum-minimum
+classes = range/8
+classes = ceiling(classes)
+breaks = seq(17,65,by=8)
+breaks
+datacut = cut(data,breaks,right=T)
+frequency=table(datacut)
+i=1:6
+width = 8
+midpoints = c(21+width*(i-1))
+cumulative = cumsum(frequency)
+show = cbind(frequency,midpoints,cumulative)
+show
+polygon=cbind(midpoints,frequency)
+polygon1=cbind(midpoints,cumulative)
+hist(data,breaks,main="Histogram",xlab="Ages",ylab="No of people",col="skyblue",xlim=c(10,70),ylim=c(0,70))
+plot(polygon,type="o",main="Frequency Polygon",xlab="Ages",ylab="No of people",ylim=c(0,70),xlim=c(15,70),pch=1,lwd=3)
+plot(polygon1,main="Cumulative Frequency polygon",type="b",ylim=c(50,110),xlim=c(10,70),lwd=3)
+dense=density(data)
+plot(dense,lwd=2,main="Rug plot",xlab="Ages",ylab="Density")
+rug(data,side=1,col="black",lwd=2)
